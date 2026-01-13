@@ -15,3 +15,6 @@ joblib
 fastapi
 uvicorn
 uv
+
+
+#  kaggle dataset https://www.kaggle.com/datasets/saranyaponnarasu/bank-marketing-term-deposits-classification/code
