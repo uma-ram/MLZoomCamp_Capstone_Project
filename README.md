@@ -30,10 +30,21 @@ term deposit.
 
 ## Project Structure
 
-- `notebooks/` – Exploratory data analysis and experiments
-- `data/` – Dataset files
-- `src/` – Training and evaluation scripts (added later)
-
+bank-marketing-ml/<br>
+│<br>
+├── app.py<br>
+├── data/<br>
+│   ├── train.csv<br>
+│   └── test.csv<br>
+├── models/<br>
+│   └── model.bin<br>
+├── notebooks/<br>
+│   ├── 01_eda.ipynb<br>
+│   └── 02_modeling.ipynb│<br>
+├── src/<br>
+│   └── train.py│<br>
+├── README.md<br>
+├── requirements.txt<br>
 
 ## EDA
 
@@ -115,3 +126,22 @@ Other models such as Gradient Boosting and Random Forest were trained using reas
   </tr>
 
   </table>
+
+  ## Training the Model
+
+The model training logic is exported from the notebook into a Python
+script for reproducibility.
+
+To train the model and save it locally:
+
+```bash
+python src/train.py
+
+Run the app:
+
+uvicorn app:app --reload
+
+
+Open browser:
+
+http://127.0.0.1:8000/docs
