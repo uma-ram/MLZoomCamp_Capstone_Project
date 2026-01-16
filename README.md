@@ -127,6 +127,21 @@ Other models such as Gradient Boosting and Random Forest were trained using reas
 
   </table>
 
+## Model Evaluation
+
+Due to class imbalance, model performance was evaluated using
+precision, recall, F1-score for the positive class (`y = yes`), and
+ROC-AUC.
+
+- Precision (class 1): 0.65
+- Recall (class 1): 0.48
+- F1-score (class 1): 0.55
+- ROC-AUC: 0.93
+
+Recall was prioritized as the key metric, as the business objective
+is to identify as many potential subscribers as possible.
+
+
   ## Training the Model
 
 The model training logic is exported from the notebook into a Python
