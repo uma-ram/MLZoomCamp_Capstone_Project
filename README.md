@@ -32,7 +32,6 @@ term deposit.
 
 bank-marketing-ml/<br>
 │<br>
-├── app.py<br>
 ├── data/<br>
 │   ├── train.csv<br>
 │   └── test.csv<br>
@@ -41,12 +40,20 @@ bank-marketing-ml/<br>
 ├── notebooks/<br>
 │   ├── 01_eda.ipynb<br>
 │   └── 02_modeling.ipynb│<br>
+├── screenshots/<br>
+│   ├── Screenshot 2026-01-13 141004.png<br>
+│   └── Screenshot 2026-01-13 141015.png<br>
+│   ├── Screenshot 2026-01-13 141647.png<br>
+│   └── Screenshot_Render.png<br>
 ├── src/<br>
 │   └── train.py│<br>
+├── app.py<br>
+├── Dockerfile<br>
 ├── README.md<br>
 ├── requirements.txt<br>
+├── sampledata.py<br>
 
-## EDA
+## Exploratory Data Analysis
 
 ![alt text](<Screenshots/Screenshot 2026-01-13 141004.png>)
 
@@ -141,36 +148,101 @@ ROC-AUC.
 Recall was prioritized as the key metric, as the business objective
 is to identify as many potential subscribers as possible.
 
-
-  ## Training the Model
+## How to Run Locally
 
 The model training logic is exported from the notebook into a Python
 script for reproducibility.
 
-To train the model and save it locally:
+### Environment Setup
 
+Create and activate a virtual environment
+```
+  python -m venv venv
+```
 
-python src/train.py
+Windows
+```
+  venv\Scripts\activate
+```
 
-Run the app:
+Linux / Mac
+```
+  source venv/bin/activate
+```
 
-uvicorn app:app --reload
+Install dependencies:
+```
+  pip install -r requirements.txt
+```
 
+### Local Setup
 
-Open browser:
+* Clone the repository and navigate to the project directory.
+```
+  https://github.com/uma-ram/MLZoomCamp_Capstone_Project
+```
 
-http://127.0.0.1:8000/docs
+* Train the model
+```
+  python src/train.py
+```
+* Run the app:
+```
+  uvicorn app:app --reload
+```
 
+* Open browser:
+```
+  http://127.0.0.1:8000/docs
+```
+
+## API Call
+
+You can make a POST request to the /predict endpoint to get a prediction.
+
+Using curl: <br>
+
+```
+curl -X 'POST' \
+  'https://bank-marketing-ml.onrender.com/predict' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "age": 26,
+  "job": "admin.",
+  "marital": "married",
+  "education": "secondary",
+  "default": "no",
+  "balance": 45,
+  "housing": "no",
+  "loan": "no",
+  "contact": "unknown",
+  "day": 5,
+  "month": "may",
+  "duration": 1467,
+  "campaign": 1,
+  "pdays": -1,
+  "previous": 0,
+  "poutcome": "unknown"
+}'
+
+```
+
+ Response
+
+   ```
+{
+    "subscription_probability": 0.5527550578117371,
+    "will_subscribe": true
+}
+   ```
 
 ## Cloud Deployment
 
 The model is deployed using Render and is publicly accessible.
 
 API Endpoint:
-https://bank-marketing-ml.onrender.com/predict
 
-Swagger UI:
 https://bank-marketing-ml.onrender.com/docs
-
 
 ![alt text](<Screenshots/Screenshot_Render.png>)
