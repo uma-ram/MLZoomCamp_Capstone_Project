@@ -149,7 +149,7 @@ script for reproducibility.
 
 To train the model and save it locally:
 
-```bash
+
 python src/train.py
 
 Run the app:
@@ -160,3 +160,17 @@ uvicorn app:app --reload
 Open browser:
 
 http://127.0.0.1:8000/docs
+
+
+## Cloud Deployment
+
+The model is deployed using Render and is publicly accessible.
+
+API Endpoint:
+https://bank-marketing-ml.onrender.com/predict
+
+Swagger UI:
+https://bank-marketing-ml.onrender.com/docs
+
+
+![alt text](<Screenshots/Screenshot_Render.png>)
